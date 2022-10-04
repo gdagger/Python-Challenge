@@ -1,8 +1,8 @@
 import csv
 
-path1 = '/Users/glena.dagger/Desktop/BootCamp/AssignmentRepositories/Python-Challenge/PyBank/Resources/budget_data.csv'
+path = '/Users/glena.dagger/Desktop/BootCamp/AssignmentRepositories/Python-Challenge/PyBank/'
 
-with open(path1, 'r') as file:
+with open(path + 'Resources/budget_data.csv', 'r') as file:
     reader = csv.reader(file)
     header = next(reader)
 
@@ -45,7 +45,7 @@ with open(path1, 'r') as file:
 
 
 
-with open('financial_analysis.txt', 'w') as out_file:
+with open(path + 'Analysis/financial_analysis.txt', 'w') as out_file:
     writer = csv.writer(out_file)
 
     lines = ['Financial Analysis', '----------------------------', 'Total Profit: ' + str(total_profit), 'Average Profit: ' + str(avg_profit), 'Greatest Increase in Profits: ' + max_profit_date + ' ' + str(max_profit), 'Greatest Decrease in Profits: ' + min_profit_date + ' ' + str(min_profit)]
