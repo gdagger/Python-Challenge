@@ -1,8 +1,9 @@
 import csv
+from os import path
 
-path = '/Users/glena.dagger/Desktop/BootCamp/AssignmentRepositories/Python-Challenge/PyBank/'
+csvpath = path.join('..','PyBank','Resources','budget_data.csv')
 
-with open(path + 'Resources/budget_data.csv', 'r') as file:
+with open(csvpath, 'r') as file:
     reader = csv.reader(file)
     header = next(reader)
 
@@ -33,8 +34,6 @@ with open(path + 'Resources/budget_data.csv', 'r') as file:
     
     avg_profit = total_profit / month_count
 
-
-
     print("Financial Analysis")
     print("----------------------------")
     print(f"Total Months: {month_count}")
@@ -44,8 +43,10 @@ with open(path + 'Resources/budget_data.csv', 'r') as file:
     print(f"Greatest Decrease in Profits: {min_profit_date} {min_profit}")
 
 
+out_path = path.join('..','PyBank','Analysis','financial_analysis.txt')
 
-with open(path + 'Analysis/financial_analysis.txt', 'w') as out_file:
+with open(out_path, 'w', newline='') as out_file:
+
     writer = csv.writer(out_file)
 
     lines = ['Financial Analysis', '----------------------------', 'Total Profit: ' + str(total_profit), 'Average Profit: ' + str(avg_profit), 'Greatest Increase in Profits: ' + max_profit_date + ' ' + str(max_profit), 'Greatest Decrease in Profits: ' + min_profit_date + ' ' + str(min_profit)]
