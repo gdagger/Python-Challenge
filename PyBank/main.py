@@ -8,6 +8,7 @@ import csv
 # Import path from os module to designate file path
 from os import path
 
+
 ## VARIABLES
 
 # Initialize month_count variable to 0 to track total month count (number of rows)
@@ -38,7 +39,7 @@ with open(csvpath, 'r') as file:
     header = next(reader)
 
     ## FOR LOOP
-    # Iterate through reader object to collect relevant data from each row
+    # Iterate through each row of budget_data.csv to collect relevant data from each row
     for row in reader:
         
         # Increase number of months by 1 to keep track of running total
@@ -101,6 +102,7 @@ print('\n\n'.join(financial_analysis))
 
 
 ## WRITE TO OUTGOING TEXT FILE
+
 # Store file path for outgoing text file
 out_path = path.join('..','PyBank','Analysis','financial_analysis.txt')
 

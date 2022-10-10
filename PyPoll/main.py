@@ -1,12 +1,29 @@
-## Module 3 Homework
+##  MODULE 3 HOMEWORK
+##  PyPoll
+##  Glen Dagger
 
 # Import csv module to read contents of file
 import csv
 
-# Import path from os module create variable for file path
+# Import path from os module to designate file path
 from os import path
 
-# Create variable to store path to CSV file
+
+## VARIABLES
+
+# Set total vote counter to 0
+total_votes = 0
+
+# Create empty candidate list
+candidates = []
+
+# Create empty vote count list
+candidate_votes = []
+
+
+## READ DATA FROM CSV FILE
+
+# Store csv file path for 'election_data.csv' in csvpath variable
 csvpath = path.join('..','PyPoll','Resources','election_data.csv')
 
 # Open election_data.csv file to read data
@@ -15,19 +32,10 @@ with open(csvpath,'r') as file:
     # Create reader object to read election_data.csv
     csvreader = csv.reader(file)
 
-    # Store header using next() function so for loop begins with first row of data
+    # Store header using next() function so For loop begins with first row of data
     header = next(csvreader)
 
-    # Set total vote counter to 0
-    total_votes = 0
-
-    # Create empty candidate list
-    candidates = []
-
-    # Create empty vote count list
-    candidate_votes = []
-
-    # Iterate through each row of election_data.csv
+    # Iterate through each row of election_data.csv to collect relevant data
     for row in csvreader:
 
         # Increment total vote counter by 1 for each row
@@ -42,6 +50,7 @@ with open(csvpath,'r') as file:
             # Append an element of 0 for each new candidate
             candidate_votes.append(0)
         
+        ## FOR LOOP
         # For loop to count number of votes for each individual candidate
         for i in range(len(candidates)):
 
@@ -51,44 +60,54 @@ with open(csvpath,'r') as file:
                 # Increment the corresponding vote count for that candidate in candidate_votes
                 candidate_votes[i] += 1
 
-    # List comprehension to store voting percentage of each candidate in vote_percent list
-    vote_percent = [round((vote/total_votes*100),2) for vote in candidate_votes]
+        ## END FOR LOOP
 
-    # Set winning vote counter = 0
-    winning_votes = 0
 
-    # For loop to run same number of times as number of candidates
-    for i in range(len(candidates)):
+## DATA ANALYSIS
+# List comprehension to store voting percentage of each candidate in vote_percent list
+vote_percent = [round((vote/total_votes*100),2) for vote in candidate_votes]
 
-        # Check if each vote amount is greater than current max vote count
-        if candidate_votes[i] > winning_votes:
+# Set winning vote counter = 0
+winning_votes = 0
 
-            # If so, update current max vote count
-            winning_votes = candidate_votes[i]
+# For loop to run same number of times as number of candidates
+for i in range(len(candidates)):
 
-            # Update current winning candidate
-            winning_candidate = candidates[i]
+    # Check if each vote amount is greater than current max vote count
+    if candidate_votes[i] > winning_votes:
 
-    # Create a list of strings for final analysis
-    election_results = ("Election Results\n"
-                        "-------------------------\n"
-                        f"Total Votes: {total_votes}\n"
-                        "-------------------------\n"
-                        f"{candidates[0]}: {vote_percent[0]}% ({candidate_votes[0]})\n"
-                        f"{candidates[1]}: {vote_percent[1]}% ({candidate_votes[1]})\n"
-                        f"{candidates[2]}: {vote_percent[2]}% ({candidate_votes[2]})\n"
-                        "-------------------------\n"
-                        f"Winner: {winning_candidate}\n"
-                        "-------------------------\n")
+        # If so, update current max vote count
+        winning_votes = candidate_votes[i]
 
-# Print final analysis 
-print(election_results)
+        # Update current winning candidate
+        winning_candidate = candidates[i]
 
-# Create variable to store file path to new outgoing file
+
+## ELECTION RESULTS
+
+# Create a list of strings for election results
+election_results = ["\nElection Results",
+                    "-------------------------",
+                    f"Total Votes: {total_votes}",
+                    "-------------------------",
+                    f"{candidates[0]}: {vote_percent[0]}% ({candidate_votes[0]})",
+                    f"{candidates[1]}: {vote_percent[1]}% ({candidate_votes[1]})",
+                    f"{candidates[2]}: {vote_percent[2]}% ({candidate_votes[2]})",
+                    "-------------------------",
+                    f"Winner: {winning_candidate}",
+                    "-------------------------\n"]
+
+## PRINT IN TERMINAL
+# Print election results
+print('\n\n'.join(election_results))
+
+
+## WRITE TO OUTGOING TEXT FILE
+# Store file path for new outgoing file
 outpath = path.join('..','PyPoll','Analysis','election_summary.txt')
 
 # Open new outgoing text file to write results
 with open(outpath,'w') as outfile:
 
     # Write results to outgoing text file
-    outfile.write(election_results)
+    outfile.write('\n\n'.join(election_results))
