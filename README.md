@@ -1,6 +1,6 @@
 # Python-Challenge
 
-## Week 3 Assignment
+## Module 3 Assignment
 
 ### Glen Dagger
 
