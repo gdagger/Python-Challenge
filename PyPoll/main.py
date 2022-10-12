@@ -64,7 +64,8 @@ with open(csvpath,'r') as file:
 
 
 ## DATA ANALYSIS
-# List comprehension to store voting percentage of each candidate in vote_percent list
+
+# List comprehension to calculate and store voting percentage for each candidate in vote_percent list
 vote_percent = [round((vote/total_votes*100),2) for vote in candidate_votes]
 
 # Set winning vote counter = 0

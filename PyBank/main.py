@@ -93,8 +93,8 @@ financial_analysis = ["\nFinancial Analysis",
                     f"Total Months: {month_count}",
                     f"Total Profit: ${total_profit}",
                     f"Average Change in Profit: ${avg_profit_change}",
-                    f"Greatest Increase in Profits: {','.join([x for x in max_profit_dates])} ${max_profit}",
-                    f"Greatest Decrease in Profits: {','.join([x for x in min_profit_dates])} ${min_profit}\n"]
+                    f"Greatest Increase in Profits: {','.join([x for x in max_profit_dates])} (${max_profit})",
+                    f"Greatest Decrease in Profits: {','.join([x for x in min_profit_dates])} (${min_profit})\n"]
 
 ## PRINT IN TERMINAL
 # Print financial analysis data in terminal
